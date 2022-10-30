@@ -7,5 +7,6 @@ import org.springframework.boot.runApplication
 class KotlinSpringBootMockmvcJsonassertRegexApplication
 
 fun main(args: Array<String>) {
-	runApplication<KotlinSpringBootMockmvcJsonassertRegexApplication>(*args)
+    @Suppress("SpreadOperator")
+    runApplication<KotlinSpringBootMockmvcJsonassertRegexApplication>(*args)
 }
