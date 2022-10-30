@@ -1,0 +1,11 @@
+# style のルール
+style:
+  active: true
+  #
+  # UnusedImports
+  #
+  # 概要
+  # - 未使用の import を禁止する
+  #
+  UnusedImports:
+    active: true # (default: false)
