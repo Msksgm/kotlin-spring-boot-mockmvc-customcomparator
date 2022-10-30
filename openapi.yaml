@@ -1,0 +1,83 @@
+openapi: "3.0.2"
+info:
+  title: API Title
+  version: "1.0"
+servers:
+  - url: /api
+paths:
+  /articles:
+    post:
+      tags:
+        - Articles
+      summary: 記事を作成
+      description: 記事を作成する
+      operationId: CreateArticle
+      requestBody:
+        description: Article Create
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewArticleRequest'
+        required: true
+      responses:
+        '201':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SingleArticleResponse'
+components:
+  schemas:
+    Article:
+      required:
+        - title
+        - description
+        - body
+        - createdAt
+        - updatedAt
+      type: object
+      properties:
+        title:
+          type: string
+        description:
+          type: string
+        body:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+    NewArticle:
+      required:
+        - body
+        - description
+        - title
+      type: object
+      properties:
+        title:
+          type: string
+          minLength: 4
+          maxLength: 16
+        description:
+          type: string
+          minLength: 8
+          maxLength: 64
+        body:
+          type: string
+          maxLength: 128
+    NewArticleRequest:
+      required:
+        - article
+      type: object
+      properties:
+        article:
+          $ref: '#/components/schemas/NewArticle'
+    SingleArticleResponse:
+      required:
+        - article
+      type: object
+      properties:
+        article:
+          $ref: '#/components/schemas/Article'
