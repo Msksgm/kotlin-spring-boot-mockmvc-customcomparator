@@ -22,57 +22,53 @@ class ArticleTest {
         @Autowired
         lateinit var mockMvc: MockMvc
 
-//        @Test
-//        fun `正常系-createdAt と updatedAt で比較できずに落ちるテスト`() {
-//            /**
-//             * given:
-//             */
-//            val requestBody = """
-//                {
-//                    "article": {
-//                        "title": "dummy-title",
-//                        "description": "dummy-description",
-//                        "body": "dummy-body"
-//                    }
-//                }
-//            """.trimIndent()
-//
-//            /**
-//             * when:
-//             */
-//            val resposne = mockMvc.post("/api/articles") {
-//                contentType = MediaType.APPLICATION_JSON
-//                content = requestBody
-//            }.andReturn().response
-//            val actualStatus = resposne.status
-//            val actualResponseBody = resposne.contentAsString
-//
-//            /**
-//             * then:
-//             * - ステータスコードが一致する
-//             * - レスポンスボディが一致する
-//             */
-//            val expectedStatus = HttpStatus.CREATED.value()
-//            val expectedResponseBody = """
-//                {
-//                    "article": {
-//                        "title": "dummy-title",
-//                        "description": "dummy-description",
-//                        "body": "dummy-body",
-//                        "createdAt": "2022-01-01T00:00:00.000000+09:00",
-//                        "updatedAt": "2022-01-01T00:00:00.000000+09:00"
-//                    }
-//                }
-//            """.trimIndent()
-//            assertThat(actualStatus).isEqualTo(expectedStatus)
-//            JSONAssert.assertEquals(
-//                expectedResponseBody,
-//                actualResponseBody,
-//                CustomComparator(
-//                    JSONCompareMode.NON_EXTENSIBLE,
-//                )
-//            )
-//        }
+        @Test
+        fun `正常系-createdAt と updatedAt で比較できずに落ちるテスト`() {
+            /**
+             * given:
+             */
+            val requestBody = """
+                {
+                    "article": {
+                        "title": "dummy-title",
+                        "description": "dummy-description",
+                        "body": "dummy-body"
+                    }
+                }
+            """.trimIndent()
+
+            /**
+             * when:
+             */
+            val resposne = mockMvc.post("/api/articles") {
+                contentType = MediaType.APPLICATION_JSON
+                content = requestBody
+            }.andReturn().response
+            val actualStatus = resposne.status
+            val actualResponseBody = resposne.contentAsString
+
+            /**
+             * then:
+             * - ステータスコードが一致する
+             * - レスポンスボディが一致する
+             */
+            val expectedStatus = HttpStatus.CREATED.value()
+            val expectedResponseBody = """
+                {
+                    "article": {
+                        "title": "dummy-title",
+                        "description": "dummy-description",
+                        "body": "dummy-body"
+                    }
+                }
+            """.trimIndent()
+            assertThat(actualStatus).isEqualTo(expectedStatus)
+            JSONAssert.assertEquals(
+                expectedResponseBody,
+                actualResponseBody,
+                JSONCompareMode.NON_EXTENSIBLE,
+            )
+        }
 
         @Test
         fun `正常系-特定のキーが存在すればテストを通す`() {
