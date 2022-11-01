@@ -58,7 +58,9 @@ class ArticleTest {
                     "article": {
                         "title": "dummy-title",
                         "description": "dummy-description",
-                        "body": "dummy-body"
+                        "body": "dummy-body",
+                        "createdAt": "2022-01-01T00:00:00.000000+09:00",
+                        "updatedAt": "2022-01-01T00:00:00.000000+09:00"
                     }
                 }
             """.trimIndent()
